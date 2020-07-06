@@ -127,15 +127,14 @@ class FromView extends Component {
                     <CustomBreadcrumb arr={['表单', '基础表单']}></CustomBreadcrumb>
                 </div>
                 <div className='base-style'>
-                    <h3>创建商品</h3>
+                    <h3>修改商品信息</h3>
                     <Divider></Divider>
-                    <p>请填写以下信息来创建一个新的商品</p>
                 </div>
 
                 <Row>
                     <Col>
                         <div className='base-style'>
-                            <Divider orientation='left'>信息键入</Divider>
+                            <Divider orientation='left'>信息修改</Divider>
                             <Form {...formItemLayout} onSubmit={this.handleSubmit}>
                             <Form.Item label='商品名称'>
                                     {getFieldDecorator('name', {
@@ -200,7 +199,7 @@ class FromView extends Component {
                                         type='primary'
                                         htmlType='submit'
                                     >
-                                        创建
+                                        确认修改
                                     </Button>
                                 </Form.Item>
                             </Form>

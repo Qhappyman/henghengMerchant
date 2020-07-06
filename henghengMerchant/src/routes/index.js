@@ -13,7 +13,7 @@ const StepView = loadable(() => import(/* webpackChunkName: 'step' */ '@/views/N
 
 // 表单
 const FormBaseView = loadable(() => import(/* webpackChunkName: 'formBase' */ '@/views/FormView/FormBaseView'))
-const FormStepView = loadable(() => import(/* webpackChunkName: 'formStep' */ '@/views/FormView/FormStepView'))
+const FormModify = loadable(() => import(/* webpackChunkName: 'formStep' */ '@/views/FormView/FormModify'))
 
 // 展示
 const TableView = loadable(() => import(/* webpackChunkName: 'table' */ '@/views/ShowView/Table'))
@@ -41,7 +41,7 @@ const routes = [
     { path: '/nav/menu', exact: false, name: '下拉菜单', component: MenuView },
     { path: '/nav/steps', exact: false, name: '步骤条', component: StepView },
     { path: '/form/base-form', exact: false, name: '表单', component: FormBaseView },
-    { path: '/form/step-form', exact: false, name: '表单', component: FormStepView },
+    { path: '/form/modify', exact: false, name: '表单', component: FormModify },
     { path: '/show/table', exact: false, name: '表格', component: TableView },
     { path: '/show/collapse', exact: false, name: '折叠面板', component: CollapseView },
     { path: '/show/tree', exact: false, name: '树形控件', component: TreeView },
