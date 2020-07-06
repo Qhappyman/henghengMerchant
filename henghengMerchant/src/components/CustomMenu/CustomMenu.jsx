@@ -32,7 +32,8 @@ class CustomMenu extends Component {
 
     // 点击面包屑导航时 侧边栏同步响应
     componentDidUpdate(prevProps, prevState) {
-        let { pathname } = this.props.location
+        let { pathname } = this.props.location;
+        console.log(pathname)
         if (prevProps.location.pathname !== pathname) {
             this.setState({
                 selectedKeys: [pathname],

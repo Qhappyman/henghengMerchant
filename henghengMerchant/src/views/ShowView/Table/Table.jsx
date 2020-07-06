@@ -38,7 +38,7 @@ const columns = [
         key: 'picture',
         render: (text, record) => (
             <span>
-                <Button type='link'><Link to="/others/upload">进入</Link></Button>
+                <Button type='link'><Link to="/show/upload">进入</Link></Button>
             </span>
         )
     },

@@ -41,7 +41,7 @@ const routes = [
     { path: '/nav/menu', exact: false, name: '下拉菜单', component: MenuView },
     { path: '/nav/steps', exact: false, name: '步骤条', component: StepView },
     { path: '/form/base-form', exact: false, name: '表单', component: FormBaseView },
-    { path: '/form/modify', exact: false, name: '表单', component: FormModify },
+    { path: '/form/modify', exact: false, name: 'Modify', component: FormModify },
     { path: '/show/table', exact: false, name: '表格', component: TableView },
     { path: '/show/collapse', exact: false, name: '折叠面板', component: CollapseView },
     { path: '/show/tree', exact: false, name: '树形控件', component: TreeView },
@@ -49,7 +49,7 @@ const routes = [
     { path: '/others/progress', exact: false, name: '进度条', component: ProgressView, auth: [1] },
     { path: '/others/animation', exact: false, name: '动画', component: AnimationView, auth: [1] },
     { path: '/others/editor', exact: false, name: '富文本', component: EditorView, auth: [1] },
-    { path: '/others/upload', exact: false, name: '上传', component: UploadView, auth: [1] },
+    { path: '/show/upload', exact: false, name: '上传', component: UploadView, auth: [1] },
     { path: '/one/two/three', exact: false, name: '三级', component: Three },
     { path: '/about', exact: false, name: '关于', component: About, auth: [1] }
 ]
