@@ -21,6 +21,8 @@ const CollapseView = loadable(() => import(/* webpackChunkName: 'collapse' */ '@
 const TreeView = loadable(() => import(/* webpackChunkName: 'tree' */ '@/views/ShowView/Tree'))
 const TabsView = loadable(() => import(/* webpackChunkName: 'tabs' */ '@/views/ShowView/Tabs'))
 
+//用户设置
+const Setting = loadable(() => import(/* webpackChunkName: 'tabs' */ '@/views/Setting'))
 // 其它
 const ProgressView = loadable(() => import(/* webpackChunkName: 'progress' */ '@/views/Others/Progress'))
 const AnimationView = loadable(() => import(/* webpackChunkName: 'animation' */ '@/views/Others/Animation'))
@@ -32,6 +34,7 @@ const About = loadable(() => import(/* webpackChunkName: 'about' */ '@/views/Abo
 
 const routes = [
     { path: '/index', exact: true, name: 'Index', component: Index, auth: [1] },
+    { path: '/setting', exact: true, name: 'Setting', component: Setting, auth: [1] },
     { path: '/public/button', exact: false, name: '按钮', component: ButtonView, auth: [1] },
     { path: '/public/icon', exact: false, name: '图标', component: IconView, auth: [1] },
     { path: '/nav/dropdown', exact: false, name: '下拉菜单', component: DropdownView },

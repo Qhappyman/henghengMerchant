@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Layout, Input, Icon, Form, Button, Divider, message, notification } from 'antd'
 import { withRouter } from 'react-router-dom'
-// import axios from '@/api'
+// import axios from '@/api'     //里面有createaxios，本人觉得配置不好用，未引入
 import axios from 'axios'
-// import { API } from '@/api/config'
+// import { API } from '@/api/config'    //api使用package里面的proxy代理
 import '@/style/view-style/login.scss'
 
 class Login extends Component {
@@ -27,8 +27,11 @@ class Login extends Component {
                     .post('/merchants/login', { name, password })
                     .then(res => {
                         if (res.data.errCode === 0) {
-                            localStorage.setItem('user', 1)
-                            localStorage.setItem('token', res.data.data.token)
+                            const INF=res.data.data;
+                            for(let i in INF){
+                                localStorage.setItem( `${i}`,INF[i])
+                            }
+                            localStorage.setItem('user',1)
                             this.timer = setTimeout(() => {
                                 message.success('登录成功!')
                                 this.props.history.push('/')

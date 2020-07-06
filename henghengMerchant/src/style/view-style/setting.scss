@@ -1,0 +1,47 @@
+.login {
+    background: url('../../assets/images/login.jpg') no-repeat;
+    background-size: cover;
+
+    .model {
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(245, 245, 221, 0.8);
+
+        .login-form {
+            margin-top: -70px;
+            height: 550px;
+            padding: 1rem;
+            box-shadow: 0px 2px 13px 0px rgba(228, 228, 228, 0.6);
+            border-radius: 5px;
+            background-color: #fff;
+            width: 55rem;
+            .user{
+                width: 60px;
+                margin: auto;
+                :hover{
+                    cursor: pointer;
+                }
+                .upload{
+                    width: 5px;
+                    height: 5px;
+                    transition: none;
+                }
+                .avatar{
+                    border-radius: 50px;
+                    // background-color: gainsboro;
+                    width: 60px;
+                    height: 60px;
+                    background-image: url(../../assets/images/avatar.jpg);
+                    background-repeat: no-repeat;
+                    background-size: 100%;
+                }
+            }
+            .login-form-button {
+                width: 100%;
+            }
+        }
+    }
+}

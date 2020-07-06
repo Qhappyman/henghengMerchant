@@ -1,22 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Dropdown, Icon, Layout, Avatar, Badge } from 'antd'
-
+import { useHistory } from "react-router-dom";
 const { Header } = Layout
 
 const AppHeader = props => {
+    let history = useHistory();
+    function setSelf(){
+        history.push("/setting");
+    }
     let { menuClick, avatar, menuToggle, loginOut } = props
     const menu = (
         <Menu>
             <Menu.ItemGroup title='用户设置'>
                 <Menu.Divider />
                 <Menu.Item>
-                    <Icon type='edit' />
-                    个人设置
-                </Menu.Item>
-                <Menu.Item>
-                    <Icon type='setting' theme='filled' />
-                    系统设置
+                    <span onClick={()=>setSelf()}>
+                        <Icon type='edit' />
+                        个人设置
+                    </span>
                 </Menu.Item>
             </Menu.ItemGroup>
             <Menu.Divider />
@@ -69,3 +71,4 @@ AppHeader.propTypes = {
 }
 
 export default React.memo(AppHeader)
+
