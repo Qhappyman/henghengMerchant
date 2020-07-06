@@ -2,6 +2,7 @@
     "name": "react-admin",
     "version": "0.1.0",
     "private": true,
+    "proxy": "http://123.57.137.244:8083",
     "dependencies": {
         "animate.css": "^3.7.2",
         "antd": "^3.23.5",

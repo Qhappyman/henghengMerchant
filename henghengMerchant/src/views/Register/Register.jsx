@@ -21,17 +21,15 @@ class Login extends Component {
         e.preventDefault()
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                let { name, password } = values
+                let { name, password, description, address } = values
                 console.log(values);
                 axios
-                    .post('/merchants/login', { name, password })
+                    .post('/merchants/register', { name, password, description,address })
                     .then(res => {
                         if (res.data.errCode === 0) {
-                            localStorage.setItem('user', 1)
-                            localStorage.setItem('token', res.data.data.token)
                             this.timer = setTimeout(() => {
-                                message.success('登录成功!')
-                                this.props.history.push('/')
+                                message.success('注册成功')
+                                this.props.history.push('/login')
                                 this.enterLoading()
                             }, 2000)
                         } else {
@@ -40,22 +38,11 @@ class Login extends Component {
                     })
                     .catch(err => {
                         message.warning('网络错误')
-                    })
-
-                // 这里可以做权限校验 模拟接口返回用户权限标识
-                switch (values.name) {
-                    case 'admin':
-                        values.auth = 0
-                        break
-                    default:
-                        values.auth = 1
-                }           
+                    })      
             }
         })
     }
-    toRegister(){
-        this.props.history.push('/register')
-    }
+
     componentDidMount() {
         notification.open({
             message: '欢迎使用哼哼养殖',
@@ -68,14 +55,16 @@ class Login extends Component {
         notification.destroy()
         this.timer && clearTimeout(this.timer)
     }
-
+    toLogin(){
+        this.props.history.push('/login')
+    }
     render() {
         const { getFieldDecorator } = this.props.form
         return (
             <Layout className='login animated fadeIn'>
                 <div className='model'>
                     <div className='login-form'>
-                        <h3>哼哼养殖商家登录</h3>
+                        <h3>哼哼养殖商家注册</h3>
                         <Divider />
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Item>
@@ -100,20 +89,41 @@ class Login extends Component {
                                 )}
                             </Form.Item>
                             <Form.Item>
+                                {getFieldDecorator('description', {
+                                    rules: [{ required: true, message: '请输入你的描述' }]
+                                })(
+                                    <Input
+                                        prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                        placeholder='商家描述'
+                                    />
+                                )}
+                            </Form.Item>
+                            <Form.Item>
+                                {getFieldDecorator('address', {
+                                    rules: [{ required: true, message: '请输入地址' }]
+                                })(
+                                    <Input
+                                    
+                                        prefix={<Icon type='home' style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                        placeholder='商家地址'
+                                    />
+                                )}
+                            </Form.Item>
+                            <Form.Item>
                                 <Button
                                     type='primary'
                                     htmlType='submit'
                                     className='login-form-button'
                                     loading={this.state.loading}>
-                                    登录
+                                    注册
                                 </Button>
                             </Form.Item>
                             <Form.Item>
                                 <Button
                                     block
-                                    onClick={()=>{this.toRegister()}}     //确保this
+                                    onClick={()=>{this.toLogin()}}     //确保this
                                     className='login-form-button'>
-                                    注册
+                                    登录
                                 </Button>
                             </Form.Item>
                         </Form>
