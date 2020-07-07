@@ -1,7 +1,7 @@
 import React from 'react'
 import { Layout, Divider } from 'antd'
 import CustomBreadcrumb from '@/components/CustomBreadcrumb'
-
+import '@/style/view-style/about.scss'
 const AboutView = () => (
     <Layout>
         <div>
@@ -21,6 +21,9 @@ const AboutView = () => (
 计划、财务预估分析以达到企业获取盈利的目标。
 云养殖有效的解决了农村农作物滞销以及畜牧业发展瓶颈问题，并且为农产
 品消费者提供优质的消费平台，实现了现代社会绿色化、智能化、高效化发展。</p>
+        </div>
+        <div className="base-style" id="about-img">
+
         </div>
     </Layout>
 )

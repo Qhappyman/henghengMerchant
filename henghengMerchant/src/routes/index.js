@@ -3,9 +3,7 @@ import loadable from '@/utils/loadable'
 const Index = loadable(() => import(/* webpackChunkName: 'index' */ '@/views/Index'))
 
 // 通用
-const ButtonView = loadable(() => import(/* webpackChunkName: 'button' */ '@/views/PublicView/Button'))
-const IconView = loadable(() => import(/* webpackChunkName: 'icon' */ '@/views/PublicView/Icon'))
-
+const DisplayView = loadable(() => import(/* webpackChunkName: 'button' */ '@/views/PublicView/Display'))
 // 导航
 const DropdownView = loadable(() => import(/* webpackChunkName: 'dropdown' */ '@/views/NavView/Dropdown'))
 const MenuView = loadable(() => import(/* webpackChunkName: 'menu' */ '@/views/NavView/Menu'))
@@ -35,8 +33,7 @@ const About = loadable(() => import(/* webpackChunkName: 'about' */ '@/views/Abo
 const routes = [
     { path: '/index', exact: true, name: 'Index', component: Index, auth: [1] },
     { path: '/setting', exact: true, name: 'Setting', component: Setting, auth: [1] },
-    { path: '/public/button', exact: false, name: '按钮', component: ButtonView, auth: [1] },
-    { path: '/public/icon', exact: false, name: '图标', component: IconView, auth: [1] },
+    { path: '/public/display', exact: false, name: '品牌展示', component: DisplayView, auth: [1] },
     { path: '/nav/dropdown', exact: false, name: '下拉菜单', component: DropdownView },
     { path: '/nav/menu', exact: false, name: '下拉菜单', component: MenuView },
     { path: '/nav/steps', exact: false, name: '步骤条', component: StepView },
