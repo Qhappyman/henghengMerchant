@@ -17,7 +17,6 @@ function upLoad1(){
         message.success('上传成功')
     })
     .catch((err)=>{
-
     })
 }
 function upLoad2(){
@@ -32,8 +31,7 @@ function upLoad2(){
     .then((res)=>{
         message.success('上传成功')
     })
-    .catch((err)=>{
-        
+    .catch((err)=>{ 
     })
 }
 class UploadView extends Component {
