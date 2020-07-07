@@ -18,15 +18,30 @@ import '@/style/view-style/form.scss'
 
 
 
-
+let goodsList='';       //存放商品信息
 class FromView extends Component {
     state = {
         confirmDirty: false,
         autoCompleteResult: [],
         visible: true
     }
-    componentDidMount(){
-        const commodityId = localStorage.mermerchantId;           //获取到商品的信息
+    componentDidMount(){   
+        this.getGoods();         //异步事件，使用setTimeout使看起来同步执行，避免下面代码执行时拿不到异步数据
+        setTimeout(()=>{
+            console.log(goodsList,111)
+            const list = this.props.form.getFieldsValue()         
+            this.props.form.setFieldsValue({name:goodsList.name});   //他娘的，我遍历 有数据类型的问题，antd还不转换不了，真恶心
+            this.props.form.setFieldsValue({price:goodsList.price}); 
+            this.props.form.setFieldsValue({description:goodsList.description}); 
+            this.props.form.setFieldsValue({predictTime:goodsList.predictTime}); 
+            this.props.form.setFieldsValue({address:goodsList.address}); 
+            this.props.form.setFieldsValue({profit:goodsList.profit}); 
+        },500)
+        // console.log(goodsList,111)
+        // this.props.form.setFieldsValue({'name':goodsList.name,price,description,predictTime,type,endTime,startTime,address,profit})
+        // for(let i in goodsList){
+            // this.props.form.setFieldsValue({'name':goodsList.name});
+        // }
     }
     handleClose = () => {
         this.setState({ visible: false })
@@ -37,8 +52,8 @@ class FromView extends Component {
         const commodityId = localStorage.mermerchantId;   //获取到商品的Id，但是点击商品是怎么知道他的Id
         this.props.form.validateFieldsAndScroll((err, fieldsValue) => {
             if (err) return
-            fieldsValue.startTime=Date(fieldsValue.startTime.format('YYYY-MM-DD'))
-            fieldsValue.endTime=Date(fieldsValue.endTime.format('YYYY-MM-DD'))
+            fieldsValue.startTime=fieldsValue.startTime.format('YYYY-MM-DD')
+            fieldsValue.endTime=fieldsValue.endTime.format('YYYY-MM-DD')
             let {name,price,description,predictTime,type,endTime,startTime,address,profit}=fieldsValue;
             name=String(name);
             price=String(price);
@@ -48,7 +63,7 @@ class FromView extends Component {
             address=String(address);
             profit=String(profit);
             axios                           //这个有问题，下面的参数应该按需传过去
-            .put(`/merchants/modifyCommodity?commodityId=${String(commodityId)}`, {name,price,description,predictTime,type,endTime,startTime,address,profit })
+            .put(`/merchants/modifyCommodity?commodityId=${String(localStorage.clickId)}`, {name,price,description,predictTime,type,endTime,startTime,address,profit })
             .then(res => {
                 if (res.data.errCode === 0) {
                     const INF=res.data.data;
@@ -95,7 +110,18 @@ class FromView extends Component {
         }
         this.setState({ autoCompleteResult })
     }
+getGoods(){
+    axios
+        .get(` /commoditys/getCommodityDetail?commodityId=${localStorage.clickId}`)
+        .then((res)=>{
+            goodsList=res.data.data;
+            console.log(res,'getGoods');
+            console.log(goodsList,666)
+        })
+        .catch((e)=>{
 
+        })
+}
     render() {
         const { getFieldDecorator } = this.props.form
 

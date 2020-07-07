@@ -9,10 +9,12 @@ import axios from 'axios'
 
 
 function confirm(e) {
+    console.log(localStorage.clickId)
     axios
-        .delete(`/merchants/deleteCommodity?commodityId=5efff2a0c248e149e89f39f8`)
+        .delete(`/merchants/deleteCommodity?commodityId=${localStorage.clickId}`)
         .then(()=>{
             message.success('删除成功');
+            getGoods();
         })
         .catch((e)=>{
 
@@ -21,6 +23,26 @@ function confirm(e) {
   
   function cancel(e) {
   }
+function getGoods(){          //根据用户获取商品信息
+    let userId = localStorage.getItem('user_id');
+        axios
+            .get(`/commoditys/getCommodityList?merchantId=${userId}`)
+            .then((res)=>{
+                console.log(res);
+                goodsList = res.data.data.goodsList;
+                for (let i = 0; i < goodsList.length; i++) {
+                    data[i]={
+                        key: goodsList[i]._id,
+                        name: goodsList[i].name,
+                        price: goodsList[i].price
+                    }
+                }
+                console.log(goodsList)
+            })
+            .catch((e)=>{
+
+            })
+}
 const columns = [
     {
         title: '名称',
@@ -35,28 +57,28 @@ const columns = [
     },
     {
         title: '商品封面管理',
-        dataIndex: 'picture',
         key: 'picture',
         render: (text, record) => (
             <span>
-                <Button type='link'><Link to="/show/upload">进入</Link></Button>
+                <Button type='link' onClick={localStorage.setItem('clickId',text.key)}><Link to="/show/upload">进入</Link></Button>
             </span>
         )
     },
     {
         title: '修改商品',
-        key: 'action',
+        key: 'modify',
         render: (text, record) => (
             <span>
-                <Button type='link'><Link to="/form/modify">修改</Link></Button>
+                <Button type='link' onClick={localStorage.setItem('clickId',text.key)}><Link to="/form/modify">修改</Link></Button>
             </span>
         )
     },
     {
         title: '删除商品',
         key: 'action',
-        render: () => (
+        render: (text,record) => (
             <Popconfirm
+            onClick={localStorage.setItem('clickId',text.key)}
     title="确定删除此商品?"
     onConfirm={confirm}
     onCancel={cancel}
@@ -68,49 +90,16 @@ const columns = [
         )
     }
 ]
-
+let goodsList=[];
 const data = []
-for (let i = 0; i < 2; i++) {
-    data.push({
-        key: i,
-        name: `玉米${i+1}号`,
-        price: Math.floor(Math.random()*100)
-    })
-}
-for (let i = 2; i < 4; i++) {
-    data.push({
-        key: i,
-        name: `绵羊南岸`,
-        price: Math.floor(Math.random()*100)
-    })
-}
-for (let i = 4; i < 5; i++) {
-    data.push({
-        key: i,
-        name: `土豆${i+1}`,
-        price: Math.floor(Math.random()*100)
-    })
-}
-for (let i = 5; i < 64; i++) {
-    data.push({
-        key: i,
-        name: `璧山耗牛`,
-        price: Math.floor(Math.random()*100)
-    })
-}
+
+
 
 const Table1 = () => <Table columns={columns} dataSource={data} />
 class TableView extends React.Component{
     componentDidMount() {             //进入页面获取信息，展示商家对应的商品
-        let userId = localStorage.getItem('user_id');
-        axios
-            .get(`/commoditys/getCommodityList?merchantId=${userId}`)
-            .then((res)=>{
-                console.log(res);
-            })
-            .catch((e)=>{
-
-            })
+        getGoods();
+        
     }
     render(){
         return(

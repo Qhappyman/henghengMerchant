@@ -129,7 +129,7 @@ class PictorialBar extends Component {
     //     })
     // }
     render() {
-        return <div id='pictorialBar' style={{ height: 300 }}></div>
+        return <div style={{ height:0 }}></div>
     }
 }
 

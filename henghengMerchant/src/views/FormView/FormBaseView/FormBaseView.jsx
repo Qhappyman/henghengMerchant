@@ -34,8 +34,8 @@ class FromView extends Component {
         e.preventDefault()
         this.props.form.validateFieldsAndScroll((err, fieldsValue) => {
             if (err) return
-            fieldsValue.startTime=Date(fieldsValue.startTime.format('YYYY-MM-DD'))
-            fieldsValue.endTime=Date(fieldsValue.endTime.format('YYYY-MM-DD'))
+            fieldsValue.startTime=fieldsValue.startTime.format('YYYY-MM-DD')
+            fieldsValue.endTime=fieldsValue.endTime.format('YYYY-MM-DD')
             let {name,price,description,predictTime,type,endTime,startTime,address,profit}=fieldsValue;
             name=String(name);
             price=String(price);
@@ -45,7 +45,9 @@ class FromView extends Component {
             address=String(address);
             profit=String(profit);
             axios
-            .post('/merchants/createCommodity', {name,price,description,predictTime,type,endTime,startTime,address,profit })
+            .post('/merchants/createCommodity', {name,price,description,predictTime,type,endTime,startTime,address,profit },{
+                withCredentials: true
+              })
             .then(res => {
                 if (res.data.errCode === 0) {       //创建商品，成功后将信息存在localStorage里，以mer开头
                     const INF=res.data.data;

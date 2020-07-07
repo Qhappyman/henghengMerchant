@@ -5,7 +5,6 @@ import Axios from 'axios';
 
 
 function upLoad1(){
-    let commodityId = localStorage.mermerchantId;
     let file = document.getElementById('upload1').files[0];
     console.log(file)
     let config={       
@@ -13,7 +12,7 @@ function upLoad1(){
     }
     let formdata = new FormData();
     formdata.append('file',file);
-    Axios.post(`/merchants/addCommodityImg/{commodityId}`,formdata,config)
+    Axios.post(`/merchants/addCommodityImg/{clickId}`,formdata,config)
     .then((res)=>{
         message.success('上传成功')
     })
@@ -22,7 +21,6 @@ function upLoad1(){
     })
 }
 function upLoad2(){
-    let commodityId = localStorage.mermerchantId;
     let file = document.getElementById('upload1').files[0];
     console.log(file)
     let config={       
@@ -30,7 +28,7 @@ function upLoad2(){
     }
     let formdata = new FormData();
     formdata.append('file',file);
-    Axios.post(`/merchants/addCommodityImgList/${commodityId}`,formdata,config)
+    Axios.post(`/merchants/addCommodityImgList/${localStorage.clickId}`,formdata,config)
     .then((res)=>{
         message.success('上传成功')
     })

@@ -149,7 +149,7 @@ class Scatter extends Component {
     //     })
     // }
     render() {
-        return <div id='scatter' style={{ height: 300 }}></div>
+        return <div style={{ height: 0 }}></div>
     }
 }
 

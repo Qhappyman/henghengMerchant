@@ -44,6 +44,22 @@ class Register extends Component {
         //     .post('/merchants/addImg',{})
         console.log(111)
     }
+    handleChange(){               //上传商家图片
+        let file = document.querySelector('.upload').files[0];
+    console.log(file)
+    let config={       
+    headers:{'Content-Type':'multipart/form-data'}
+    }
+    let formdata = new FormData();
+    formdata.append('file',file);
+    axios.post('/merchants/addImg',formdata,config)
+    .then((res)=>{
+        message.success('上传成功')
+    })
+    .catch((err)=>{
+        
+    })
+    }
     componentDidMount() {
         const inf =localStorage;
         this.props.form.setFieldsValue({'address':inf.address,'description':inf.description,'name':inf.name})
@@ -58,10 +74,8 @@ class Register extends Component {
                 <div className='model'>
                     <div className='login-form'>
                     <div className='user'>
-                    <form action="http://123.57.137.244:8083/merchants/addImg" method="post" enctype="multipart/form-data">
-                    <input type="file" name='file' className="upload"/>
+                    <input type="file" name='file' className="upload" onChange={this.handleChange}/>
                     <input type="submit" value="上传" className="upload"/>
-                </form>
                         <div className="avatar"></div>
                     </div>
                         <Divider />
