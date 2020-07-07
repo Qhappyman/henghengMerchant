@@ -29,7 +29,7 @@ class Login extends Component {
                         if (res.data.errCode === 0) {
                             const INF=res.data.data;
                             for(let i in INF){
-                                localStorage.setItem( `${i}`,INF[i])
+                                localStorage.setItem( `user${i}`,INF[i])
                             }
                             localStorage.setItem('user',1)
                             this.timer = setTimeout(() => {

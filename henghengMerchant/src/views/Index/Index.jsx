@@ -21,37 +21,37 @@ class Index extends Component {
                 <Row gutter={24} className='index-header'>
                     <Col span={6}>
                         <div className='base-style wechat'>
-                            <Icon type='wechat' className='icon-style' />
+                            
                             <div>
-                                <span>999</span>
-                                <div>微信</div>
+                                <span>哼哼养殖</span>
+                                <div>介绍</div>
                             </div>
                         </div>
                     </Col>
                     <Col span={6}>
                         <div className='base-style qq'>
-                            <Icon type='qq' className='icon-style' />
+                            
                             <div>
-                                <span>366</span>
-                                <div>QQ</div>
+                                <span>哼哼养殖</span>
+                                <div>发展</div>
                             </div>
                         </div>
                     </Col>
                     <Col span={6}>
                         <div className='base-style dingding'>
-                            <Icon type='dingding' className='icon-style' />
+
                             <div>
-                                <span>666</span>
-                                <div>钉钉</div>
+                                <span>哼哼养殖</span>
+                                <div>优势</div>
                             </div>
                         </div>
                     </Col>
                     <Col span={6}>
                         <div className='base-style weibo'>
-                            <Icon type='weibo' className='icon-style' />
+                            
                             <div>
-                                <span>689</span>
-                                <div>微博</div>
+                                <span>哼哼养殖</span>
+                                <div>使用</div>
                             </div>
                         </div>
                     </Col>
@@ -60,8 +60,8 @@ class Index extends Component {
                     <Col>
                         <div className='base-style'>
                             <div className='bar-header'>
-                                <div>图形全屏展示</div>
-                                <Icon type='fullscreen' style={{ cursor: 'pointer' }} onClick={this.fullToggle} />
+                                <div>哼哼养殖效果展示</div>
+                                
                             </div>
                             <Divider />
                             <BarEcharts />

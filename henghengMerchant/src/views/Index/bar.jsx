@@ -17,7 +17,7 @@ class Bar extends Component {
                 }
             },
             legend: {
-                data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎', '百度', '谷歌', '必应', '其他']
+                data: ['农业', '畜牧业', '果业', '蔬菜', '其他', '百度', '谷歌', '必应', '其他']
             },
             grid: {
                 left: '3%',
@@ -28,7 +28,7 @@ class Bar extends Component {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                    data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月']
                 }
             ],
             yAxis: [
@@ -38,30 +38,30 @@ class Bar extends Component {
             ],
             series: [
                 {
-                    name: '直接访问',
+                    name: '农业',
                     type: 'bar',
                     data: [320, 332, 301, 334, 390, 330, 320]
                 },
                 {
-                    name: '邮件营销',
+                    name: '畜牧业',
                     type: 'bar',
-                    stack: '广告',
+                    stack: '畜牧业',
                     data: [120, 132, 101, 134, 90, 230, 210]
                 },
                 {
-                    name: '联盟广告',
+                    name: '果业',
                     type: 'bar',
-                    stack: '广告',
+                    stack: '果业',
                     data: [220, 182, 191, 234, 290, 330, 310]
                 },
                 {
-                    name: '视频广告',
+                    name: '蔬菜',
                     type: 'bar',
-                    stack: '广告',
+                    stack: '蔬菜',
                     data: [150, 232, 201, 154, 190, 330, 410]
                 },
                 {
-                    name: '搜索引擎',
+                    name: '其他',
                     type: 'bar',
                     data: [862, 1018, 964, 1026, 1679, 1600, 1570],
                     markLine: {
@@ -72,32 +72,8 @@ class Bar extends Component {
                         },
                         data: [[{ type: 'min' }, { type: 'max' }]]
                     }
-                },
-                {
-                    name: '百度',
-                    type: 'bar',
-                    barWidth: 5,
-                    stack: '搜索引擎',
-                    data: [620, 732, 701, 734, 1090, 1130, 1120]
-                },
-                {
-                    name: '谷歌',
-                    type: 'bar',
-                    stack: '搜索引擎',
-                    data: [120, 132, 101, 134, 290, 230, 220]
-                },
-                {
-                    name: '必应',
-                    type: 'bar',
-                    stack: '搜索引擎',
-                    data: [60, 72, 71, 74, 190, 130, 110]
-                },
-                {
-                    name: '其他',
-                    type: 'bar',
-                    stack: '搜索引擎',
-                    data: [62, 82, 91, 84, 109, 110, 120]
                 }
+               
             ]
         })
         window.addEventListener('resize', function() {

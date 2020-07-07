@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component}from 'react'
 import CustomBreadcrumb from '@/components/CustomBreadcrumb'
 import { Layout, Divider, Row, Col, Table, Button} from 'antd'
 import '@/style/view-style/table.scss'
@@ -6,6 +6,7 @@ import { Popconfirm, message } from 'antd';
 // import { Popconfirm, message } from 'antd';
 import { Link} from 'react-router-dom'
 import axios from 'axios'
+
 
 function confirm(e) {
     axios
@@ -69,19 +70,53 @@ const columns = [
 ]
 
 const data = []
-for (let i = 0; i < 46; i++) {
+for (let i = 0; i < 2; i++) {
     data.push({
         key: i,
-        name: `商品${i+1}`,
-        price: Math.floor(Math.random()*1000)
+        name: `玉米${i+1}号`,
+        price: Math.floor(Math.random()*100)
+    })
+}
+for (let i = 2; i < 4; i++) {
+    data.push({
+        key: i,
+        name: `绵羊南岸`,
+        price: Math.floor(Math.random()*100)
+    })
+}
+for (let i = 4; i < 5; i++) {
+    data.push({
+        key: i,
+        name: `土豆${i+1}`,
+        price: Math.floor(Math.random()*100)
+    })
+}
+for (let i = 5; i < 64; i++) {
+    data.push({
+        key: i,
+        name: `璧山耗牛`,
+        price: Math.floor(Math.random()*100)
     })
 }
 
 const Table1 = () => <Table columns={columns} dataSource={data} />
-const TableView = () => (
+class TableView extends React.Component{
+    componentDidMount() {             //进入页面获取信息，展示商家对应的商品
+        let userId = localStorage.getItem('user_id');
+        axios
+            .get(`/commoditys/getCommodityList?merchantId=${userId}`)
+            .then((res)=>{
+                console.log(res);
+            })
+            .catch((e)=>{
+
+            })
+    }
+    render(){
+        return(
     <Layout className='animated fadeIn'>
         <div>
-            <CustomBreadcrumb arr={['通用', '按钮']}></CustomBreadcrumb>
+            <CustomBreadcrumb arr={['管理', '展示']}></CustomBreadcrumb>
         </div>
 
         <Row>
@@ -95,5 +130,6 @@ const TableView = () => (
         </Row>
     </Layout>
 )
-
+    }
+}
 export default TableView

@@ -47,10 +47,10 @@ class FromView extends Component {
             axios
             .post('/merchants/createCommodity', {name,price,description,predictTime,type,endTime,startTime,address,profit })
             .then(res => {
-                if (res.data.errCode === 0) {
+                if (res.data.errCode === 0) {       //创建商品，成功后将信息存在localStorage里，以mer开头
                     const INF=res.data.data;
                     for(let i in INF){
-                        localStorage.setItem( `${i}`,INF[i])
+                        localStorage.setItem( `mer${i}`,INF[i])
                     }
                     message.info('添加成功')
                 } else {
@@ -124,7 +124,7 @@ class FromView extends Component {
         return (
             <Layout className='animated fadeIn'>
                 <div>
-                    <CustomBreadcrumb arr={['表单', '基础表单']}></CustomBreadcrumb>
+                    <CustomBreadcrumb arr={['商品', '创建']}></CustomBreadcrumb>
                 </div>
                 <div className='base-style'>
                     <h3>创建商品</h3>

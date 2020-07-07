@@ -5,6 +5,7 @@ import Axios from 'axios';
 
 
 function upLoad1(){
+    let commodityId = localStorage.mermerchantId;
     let file = document.getElementById('upload1').files[0];
     console.log(file)
     let config={       
@@ -12,7 +13,7 @@ function upLoad1(){
     }
     let formdata = new FormData();
     formdata.append('file',file);
-    Axios.post(' /merchants/addCommodityImg/:commodityId',formdata,config)
+    Axios.post(`/merchants/addCommodityImg/{commodityId}`,formdata,config)
     .then((res)=>{
         message.success('上传成功')
     })
@@ -21,6 +22,7 @@ function upLoad1(){
     })
 }
 function upLoad2(){
+    let commodityId = localStorage.mermerchantId;
     let file = document.getElementById('upload1').files[0];
     console.log(file)
     let config={       
@@ -28,7 +30,7 @@ function upLoad2(){
     }
     let formdata = new FormData();
     formdata.append('file',file);
-    Axios.post(' /merchants/addCommodityImgList/:commodityId',formdata,config)
+    Axios.post(`/merchants/addCommodityImgList/${commodityId}`,formdata,config)
     .then((res)=>{
         message.success('上传成功')
     })
@@ -47,7 +49,7 @@ class UploadView extends Component {
         return (
             <Layout>
                 <div>
-                    <CustomBreadcrumb arr={['其它', '上传']}></CustomBreadcrumb>
+                    <CustomBreadcrumb arr={['管理', '上传图片']}></CustomBreadcrumb>
                 </div>
                 <div className='base-style'>
                     <h3>上传图片</h3>
