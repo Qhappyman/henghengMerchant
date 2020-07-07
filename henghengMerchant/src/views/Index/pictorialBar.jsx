@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/pictorialBar'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/title'

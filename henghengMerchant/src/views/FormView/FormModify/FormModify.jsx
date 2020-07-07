@@ -28,8 +28,7 @@ class FromView extends Component {
     componentDidMount(){   
         this.getGoods();         //异步事件，使用setTimeout使看起来同步执行，避免下面代码执行时拿不到异步数据
         setTimeout(()=>{
-            console.log(goodsList,111)
-            const list = this.props.form.getFieldsValue()         
+            console.log(goodsList,111)      
             this.props.form.setFieldsValue({name:goodsList.name});   //他娘的，我遍历 有数据类型的问题，antd还不转换不了，真恶心
             this.props.form.setFieldsValue({price:goodsList.price}); 
             this.props.form.setFieldsValue({description:goodsList.description}); 
@@ -49,7 +48,6 @@ class FromView extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        const commodityId = localStorage.mermerchantId;   //获取到商品的Id，但是点击商品是怎么知道他的Id
         this.props.form.validateFieldsAndScroll((err, fieldsValue) => {
             if (err) return
             fieldsValue.startTime=fieldsValue.startTime.format('YYYY-MM-DD')

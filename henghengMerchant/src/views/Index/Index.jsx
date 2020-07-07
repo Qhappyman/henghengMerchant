@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Layout, Row, Col, Icon, Divider } from 'antd'
+import { Layout, Row, Col, Divider } from 'antd'
 import screenfull from 'screenfull'
 import '@/style/view-style/index.scss'
 

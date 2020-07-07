@@ -1,4 +1,4 @@
-import React, {Component}from 'react'
+import React from 'react'
 import CustomBreadcrumb from '@/components/CustomBreadcrumb'
 import { Layout, Divider, Row, Col, Table, Button} from 'antd'
 import '@/style/view-style/table.scss'
