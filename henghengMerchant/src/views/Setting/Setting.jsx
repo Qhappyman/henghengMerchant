@@ -1,42 +1,52 @@
 import React, { Component } from 'react'
-import { Layout, Input, Icon, Form, Button, Divider, message} from 'antd'
+import { Layout, Input, Icon, Form, Button, Divider, message } from 'antd'
 import { withRouter } from 'react-router-dom'
 // import axios from '@/api'
 import axios from 'axios'
+import {
+    CommodityList,
+    Login,
+    Registe,
+    HomeData,
+    TypedCommodityList,
+    GetCommodityList,
+    GetCommodityDetail
+} from '../../define/define.js'
+import { AjaxGet, AjaxPost } from '../../utils/http.js'
 // import { UserOutlined } from '@ant-design/icons';
 // import { API } from '@/api/config'
 import '@/style/view-style/setting.scss'
 const layout = {
     labelCol: { span: 5 },
-    wrapperCol: { span: 18 },
-  };
+    wrapperCol: { span: 18 }
+}
 class Register extends Component {
     state = {
-        inf:''
+        inf: ''
     }
     handleSubmit = e => {
         e.preventDefault()
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 let { name, password, description, address } = values
-                console.log(values);
+                console.log(values)
                 axios
-                    .put('/merchants/modifyMerchant', { name, password, description,address })
+                    .put('/merchants/modifyMerchant', { name, password, description, address })
                     .then(res => {
                         if (res.data.errCode === 0) {
-                                message.success('修改成功')
+                            message.success('修改成功')
                         } else {
-                            message.warning(res.data.errMessage);
+                            message.warning(res.data.errMessage)
                         }
                     })
                     .catch(err => {
                         message.warning('网络错误')
-                    })      
+                    })
             }
         })
     }
-    upImg(e){
-        console.log(e);
+    upImg(e) {
+        console.log(e)
         // let file = e.target.file[0]
         // let formdata = new formdata();
         // formdata.append('file',file)
@@ -44,43 +54,46 @@ class Register extends Component {
         //     .post('/merchants/addImg',{})
         console.log(111)
     }
-    handleChange(){               //上传商家图片
-        let file = document.querySelector('.upload').files[0];
-    console.log(file)
-    let config={       
-    headers:{'Content-Type':'multipart/form-data'}
-    }
-    let formdata = new FormData();
-    formdata.append('file',file);
-    axios.post('/merchants/addImg',formdata,config)
-    .then((res)=>{
-        message.success('上传成功')
-    })
-    .catch((err)=>{
-        
-    })
+    handleChange() {
+        //上传商家图片
+        let file = document.querySelector('.upload').files[0]
+        console.log(file)
+        let config = {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        }
+        let formdata = new FormData()
+        formdata.append('file', file)
+        axios
+            .post('/merchants/addImg', formdata, config)
+            .then(res => {
+                message.success('上传成功')
+            })
+            .catch(err => {})
     }
     componentDidMount() {
-        const inf =localStorage;
-        this.props.form.setFieldsValue({'address':inf.address,'description':inf.description,'name':inf.name})
+        const inf = localStorage
+        this.props.form.setFieldsValue({ address: inf.address, description: inf.description, name: inf.name })
+        // console.log({...GetCommodityList})
+        AjaxGet({ ...GetCommodityList }).then(res => console.log(res))
+        AjaxGet({ ...GetCommodityDetail })
+        AjaxGet({ ...HomeData })
     }
 
-    componentWillUnmount() {
-    }
+    componentWillUnmount() {}
     render() {
         const { getFieldDecorator } = this.props.form
         return (
             <Layout className='login animated fadeIn'>
                 <div className='model'>
                     <div className='login-form'>
-                    <div className='user'>
-                    <input type="file" name='file' className="upload" onChange={this.handleChange}/>
-                    <input type="submit" value="上传" className="upload"/>
-                        <div className="avatar"></div>
-                    </div>
+                        <div className='user'>
+                            <input type='file' name='file' className='upload' onChange={this.handleChange} />
+                            <input type='submit' value='上传' className='upload' />
+                            <div className='avatar'></div>
+                        </div>
                         <Divider />
                         <Form onSubmit={this.handleSubmit} {...layout}>
-                            <Form.Item label="userName">
+                            <Form.Item label='userName'>
                                 {getFieldDecorator('name', {
                                     rules: [{ required: true, message: '请输入用户名!' }]
                                 })(
@@ -90,7 +103,7 @@ class Register extends Component {
                                     />
                                 )}
                             </Form.Item>
-                            <Form.Item label="password">
+                            <Form.Item label='password'>
                                 {getFieldDecorator('password', {
                                     rules: [{ required: true, message: '请输入密码' }]
                                 })(
@@ -98,11 +111,10 @@ class Register extends Component {
                                         prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
                                         type='password'
                                         placeholder='密码'
-                                        
                                     />
                                 )}
                             </Form.Item>
-                            <Form.Item label="confirm">
+                            <Form.Item label='confirm'>
                                 {getFieldDecorator('password', {
                                     rules: [{ required: true, message: '请再次输入密码' }]
                                 })(
@@ -113,7 +125,7 @@ class Register extends Component {
                                     />
                                 )}
                             </Form.Item>
-                            <Form.Item  label="description">
+                            <Form.Item label='description'>
                                 {getFieldDecorator('description', {
                                     rules: [{ required: true, message: '请输入你的描述' }]
                                 })(
@@ -123,18 +135,17 @@ class Register extends Component {
                                     />
                                 )}
                             </Form.Item>
-                            <Form.Item label="address">
+                            <Form.Item label='address'>
                                 {getFieldDecorator('address', {
                                     rules: [{ required: true, message: '请输入地址' }]
                                 })(
                                     <Input
-                                    
                                         prefix={<Icon type='home' style={{ color: 'rgba(0,0,0,.25)' }} />}
                                         placeholder='商家地址'
                                     />
                                 )}
                             </Form.Item>
-                            <Form.Item label=" ">
+                            <Form.Item label=' '>
                                 <Button
                                     type='primary'
                                     htmlType='submit'
