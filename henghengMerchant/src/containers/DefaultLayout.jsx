@@ -31,7 +31,7 @@ class DefaultLayout extends Component {
             })
         }
     }
-
+console.log(1)
     loginOut = () => {
         localStorage.clear()
         this.props.history.push('/login')
